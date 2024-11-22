@@ -3,23 +3,16 @@ local M = {}
 function M:peek()
     local start, cache = os.clock(), ya.file_cache(self)
     if not cache or self:preload() ~= 1 then
+        ya.sleep(math.max(0, PREVIEW.image_delay / 1000 + start - os.clock()))
+        ya.manager_emit("peek", {0, only_if = self.file.url})
         return
     end
 
-    ya.sleep(math.max(0, PREVIEW.image_delay / 1000 + start - os.clock()))
     ya.image_show(cache, self.area)
     ya.preview_widgets(self, {})
 end
 
-function M:seek(units)
-    local h = cx.active.current.hovered
-    if h and h.url == self.file.url then
-        ya.manager_emit("peek", {
-            math.max(0, cx.active.preview.skip + units),
-            only_if = self.file.url,
-        })
-    end
-end
+function M:seek() end
 
 function M:preload()
     local cache = ya.file_cache(self)
@@ -59,7 +52,8 @@ function M:preload()
     end
 
     local status = child:wait()
-    return status and status:success() and 1 or 2
+    return status and status.success and 1 or 2
 end
 
 return M
+
