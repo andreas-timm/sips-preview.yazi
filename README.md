@@ -1,3 +1,6 @@
+> [!NOTE]  
+> Due to correct native PSD support in `yazi`, in version `25.2.11`, the development of this plugin is on-hold.
+
 # sips-preview.yazi
 **sips-preview.yazi** is a [Yazi](https://yazi-rs.github.io/) plugin that enables quick previews of images on macOS. It focuses on PSD (Photoshop) files but also supports other image formats listed by `sips --formats`, utilizing the `sips` command-line tool.
 
@@ -13,7 +16,7 @@
 ## Compatibility table
 | Yazi Version | Plugin Version | Status         |
 |--------------|----------------|----------------|
-| 25.x.x       | -              | not compatible |
+| 25.x.x       | -              | **⚠️ not planed**  |
 | 0.4.x        | 0.3.x          | ✅             |
 | 0.3.x        | 0.2.x          | ✅             |
 
